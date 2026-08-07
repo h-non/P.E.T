@@ -23,3 +23,22 @@ class Expenses(Base):
 Base.metadata.create_all(engine)
 
 SessionLocal = sessionmaker(bind=engine)
+
+
+def add_expense(amount, category, description, exp_date):
+     session = SessionLocal()
+     new_expense = Expenses(
+
+          amount = amount,
+          category = category,
+          description = description,
+          date = exp_date
+
+     )
+
+
+     session.add(new_expense)
+     session.commit()
+     session.refresh(new_expense)
+     session.close()
+     return new_expense
