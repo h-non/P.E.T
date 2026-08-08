@@ -43,3 +43,10 @@ def add_expense(amount, category, description, exp_date):
      session.close()
      return new_expense
 
+
+def get_expenses():
+     session = SessionLocal()
+     expenses = session.query(Expenses).all()
+     session.close()
+     return expenses
+
